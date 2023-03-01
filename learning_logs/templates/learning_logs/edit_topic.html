@@ -1,0 +1,17 @@
+{% extends 'learning_logs/base.html'%}
+{% load bootstrap4 %}
+{% block page_header%}
+    <p>
+      <h3 align="center" style="color:green">Renaming {{topic}}</h3>
+    </p>
+{% endblock page_header%}
+{% block content%}
+ 
+ <form method="post" action ="{%url 'learning_logs:edit_topic' topic.id %}" class="form">
+ {% csrf_token %}
+ {% bootstrap_form form%}
+ {%buttons%}
+ <button name="submit" class="btn btn-sm btn-primary">Rename</button>
+ {%endbuttons%}
+ </form>
+{% endblock content%}

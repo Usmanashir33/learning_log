@@ -1,0 +1,15 @@
+{% extends "learning_logs/base.html"%}
+{% load bootstrap4 %}
+{% block page_header%}
+<div class="jumbotron">
+  <h3 class="display-3" align="center">learning log home page </h3>
+<h5 class="lead" align="center" style="color:green"> learning log keep you track of your learning
+    when ever you learn something; make sure you save it here!</h5>
+    {% if user.is_authenticated %}
+    {% else %}
+    <p align="center">
+        <a class="btn btn-sm btn-primary "href="{% url 'users:register'%}" role="button"> register &raquo;</a>
+    </p>
+    {% endif%}
+</div>
+{% endblock page_header %}

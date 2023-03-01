@@ -1,0 +1,19 @@
+{% extends "learning_logs/base.html" %}
+{% load bootstrap4 %}
+{% block page_header%}<h3 align="center" style="color:green"> Topics </h3> {% endblock page_header%}
+{% block content %}
+    
+    <a class="btn btn-md btn-primary mb-2" href="{% url 'learning_logs:new_topic'%}" role="button">New Topic</a>
+    {% for topic in topics %}
+     <div class="card mb-1">
+      <h4 class="card-header">
+      
+        <a href="{% url 'learning_logs:topic' topic.id %}">{{topic}}</a>
+        <small ><a class="btn btn-sm btn-secondary " href="{% url 'learning_logs:edit_topic' topic.id %}">Edit Topic </a></small></p>
+     </div>
+    {% empty %}
+    <div class="jumbotron">
+    <h3 align="center" style="color:green"> No topic Added Yet!</h3>
+    </div>
+    {% endfor %}
+{% endblock content %}

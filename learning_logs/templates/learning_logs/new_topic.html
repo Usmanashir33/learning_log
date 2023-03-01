@@ -1,0 +1,13 @@
+{% extends "learning_logs/base.html" %}
+{% load bootstrap4%}
+{% block page_header %}<p align="center" style="color:green"> Adding New Topic </p>{%endblock page_header%}
+{% block content %}
+    
+    <form method="post" action={% url 'learning_logs:new_topic'%} class="form">
+    {% csrf_token %}
+    {% bootstrap_form form%}
+    {% buttons %}
+    <button name="submit" class="btn btn-sm btn-primary">Save Topic</button>
+    {% endbuttons %}
+    </form>
+{% endblock content %}

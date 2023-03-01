@@ -1,0 +1,60 @@
+{% load bootstrap4 %}
+<!doctype html>
+<html lang = "en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,
+    initial-scale =1, shrink-to-fit=no">
+    
+    <title> learning_log </title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery="full" %}
+  
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border sticky-top">
+      <a class="navbar-brand" href={% url "learning_logs:index"%}>Learning_Log</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+              data-target="#navbarCollapse" aria-controls="navbarCollapse"
+              aria_expanded="false" aria-label="Toggle Nevigation">
+              <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="collapse navbar-collapse" id ="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href={% url "learning_logs:topics"%}> Topics </a>
+            </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+             <span class="navbar-text">hello {{user.username}}</span>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'users:logout'%}">log out</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'users:register'%}">register</a>
+            </li>
+            <li class="nav-item">
+             <a class="nav-link" href="{%url 'users:login'%}">login</a>  
+            </li>
+            {% endif%}
+          </ul>
+        </div>
+    </nav>
+    <main role="main" class="container">
+    
+      <div class="pb-2 mb-2 border-bottom ">
+      {% block page_header %}{% endblock page_header %} 
+      </div>
+      
+      <div>
+        {% block content%}{% endblock content%}
+      </div>
+      
+    </main>
+</body>
+</html>
+
