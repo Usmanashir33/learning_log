@@ -134,3 +134,8 @@ LOGIN_URL = "users:login"
 # heroku swrring
 import django_heroku
 django_heroku.settings(locals())
+# setting for debug to be false
+if os.environ.get('DEBUG') == 'TRUE' :
+    DEBUG = True
+elif os.environ.get("DEBUG") == "FALSE" :
+    DEBUG = False
