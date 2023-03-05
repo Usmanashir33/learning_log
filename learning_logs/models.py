@@ -4,9 +4,16 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Topic(models.Model) :
     # the topic user is learning About
+    public = 'public'
+    private= 'private'
+    options = [
+        (public,'public'),
+        (private,'private'),
+    ]
+    choice = models.CharField(max_length=8,choices=options,default=public)
     text = models.CharField(max_length=25)
     date_added = models.DateTimeField(auto_now_add = True)
-    owner =models.ForeignKey(User,on_delete=models.CASCADE)
+    owner =models.ForeignKey(User,on_delete=models.CASCADE)   
     
     def __str__(self) :
         """stringe representation of the class:"""

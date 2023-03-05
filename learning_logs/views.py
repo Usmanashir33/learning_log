@@ -11,8 +11,15 @@ def index(request) :
 @login_required
 def topics(request):
     """ show all the topics """
+    topic_shown = []
+    for  topic in Topic.objects.all() :
+        if topic.choice == "public" :
+            topic_shown.append(topic)
     topics=Topic.objects.filter(owner=request.user).order_by("date_added")
-    context = {"topics":topics}
+    for topic in topics :
+        if topic.choice == "private" :
+            topic_shown.append(topic)
+    context = {"topics":topic_shown}
     return render(request,"learning_logs/topics.html" , context)
 
 @login_required
@@ -20,7 +27,7 @@ def topic(request ,topic_id ) :
     """ show all the topics releted """
     topic = get_object_or_404(Topic,id=topic_id)
     entries=topic.entry_set.order_by("-date_added")
-    check_topic_ownership(request,topic)
+   # check_topic_ownership(request,topic)
     
     context ={"topic":topic ,"entries":entries}
     return render(request , "learning_logs/topic.html" , context)
@@ -35,8 +42,8 @@ def new_topic(request) :
             new_topic=form.save(commit=False)
             new_topic.owner=request.user
             new_topic.save()
-            
             return redirect("learning_logs:topics")
+            
     context ={"form":form}
     return render(request,'learning_logs/new_topic.html',context)
 

@@ -4,8 +4,8 @@ from .models import Topic,Entry
 class TopicForm(forms.ModelForm):
     class Meta :
         model=Topic
-        fields = ["text"]
-        labels={"text":""}
+        fields = ["choice","text"]
+        labels={'choice':"choose the type of the post","text":"Topic"}
         
 class EntryForm(forms.ModelForm):
     class Meta :
@@ -13,3 +13,9 @@ class EntryForm(forms.ModelForm):
         fields=["text"]
         labels={"text":""}
         widgets={"text":forms.Textarea(attrs={"cols":80})}
+    
+#
+#
+#
+#
+#
