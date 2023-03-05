@@ -10,7 +10,7 @@
       
         <a href="{% url 'learning_logs:topic' topic.id %}">{{topic}}</a>
         <small> <a class="btn btn-sm btn-secondary " href="{% url 'learning_logs:edit_topic' topic.id %}">Edit Topic </a></small>
-        <small class="btn btn-sm btn-secondary">{{topic.public}}</small>
+        <small class="btn btn-sm btn-secondary">{{topic.choice}}</small>
         <small class="btn btn-sm btn-secondary">posted by <b>{{topic.owner}}</b></small></p>
         <h6 align ='center' style="color:orange"><i>You Can Only Edit/Add Entry To Your Topics !!<i></h6>
       </div>

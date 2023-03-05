@@ -13,7 +13,7 @@ def topics(request):
     """ show all the topics """
     topic_shown = []
     for  topic in Topic.objects.all() :
-        if topic.choice == "public" :
+        if topic.choice == "public" or topic.choice == "" :
             topic_shown.append(topic)
     topics=Topic.objects.filter(owner=request.user).order_by("date_added")
     for topic in topics :
